@@ -1,19 +1,40 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/contactsSlice';
 import { Form, LabelForm, LabelInput, ButtonSubmit } from './Form.styled';
 import { nanoid } from 'nanoid';
 
-export default function ContactsForm ({onSubmit}) {
+export default function ContactsForm() {
   const [name, setName] = useState('');
-  const [id, setId] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
   const onIdCreate = () => {
-    let idAdd = nanoid(6);
-    setId(idAdd);
-  }
-  
+    let id = nanoid(6);
+    return id;
+  };
+
+  const SubmitForm = e => {
+    e.preventDefault();
+    let contact = {
+      id: onIdCreate(),
+      name: name,
+      number: number,
+    };
+    const someCopyItem = contacts.some(
+      elem => elem.name.toLowerCase() === name.toLowerCase()
+    );
+    if (someCopyItem) {
+      return alert(`${name} is already in contacts`);
+    }
+    dispatch(addContact(contact));
+    DefaultValue();
+  };
+
   const InputChange = e => {
-    const {name, value} = e.currentTarget;
+    const { name, value } = e.currentTarget;
     switch (name) {
       case 'name':
         setName(value);
@@ -25,19 +46,13 @@ export default function ContactsForm ({onSubmit}) {
         return;
     }
     onIdCreate();
-  }
-
-  const SubmitForm = e => {
-    e.preventDefault();
-    onSubmit({name, id, number});
-    DefaultValue();
-  }
+  };
 
   const DefaultValue = () => {
     setName('');
-    setId('');
     setNumber('');
-  }
+  };
+
   return (
     <>
       <Form onSubmit={SubmitForm}>
@@ -46,11 +61,10 @@ export default function ContactsForm ({onSubmit}) {
           value={name}
           type="text"
           name="name"
-          id={id}
+          onChange={InputChange}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
-          onChange={InputChange}
         ></LabelInput>
 
         <LabelForm>Number</LabelForm>
@@ -58,11 +72,10 @@ export default function ContactsForm ({onSubmit}) {
           value={number}
           type="tel"
           name="number"
-          id={id}
+          onChange={InputChange}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          onChange={InputChange}
         ></LabelInput>
 
         <ButtonSubmit type="submit" disabled={!name || !number}>
@@ -72,6 +85,3 @@ export default function ContactsForm ({onSubmit}) {
     </>
   );
 }
-
-
-
