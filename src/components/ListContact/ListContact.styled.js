@@ -30,7 +30,7 @@ transition: all 250ms;
 &:hover, 
 &:focus, 
 &:active {
-    box-shadow: 0 0 6px black;
+    box-shadow: 0 0 6px  ${({theme}) => theme.colors.font};
 }
 `
 
