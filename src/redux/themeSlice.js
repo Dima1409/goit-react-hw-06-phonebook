@@ -4,8 +4,9 @@ import storage from "redux-persist/lib/storage";
 
 const themeState = {
     colors: {
-        body: '#F0FFFF',
-        font: '#3b3c36'
+        body: '#c1ddf5',
+        font: '#13132e',
+        main: '#8bbae7'
     },
     darkTheme: false,
 };
@@ -15,13 +16,15 @@ const themeSlice = createSlice({
     initialState: themeState,
     reducers: {
         setDarkTheme(state) {
-            state.colors.body = "#3b3c36";
-            state.colors.font = '#F0FFFF';
+            state.colors.body = "#384047";
+            state.colors.font = '#8bbae7';
+            state.colors.main = '#13132e';
             state.darkTheme = true;
         },
         setDefaultTheme(state) {
-            state.colors.body = '#F0FFFF';
-            state.colors.font = '#3b3c36';
+            state.colors.body = '#c1ddf5';
+            state.colors.font = '#13132e';
+            state.colors.main = '#8bbae7';
             state.darkTheme = false;
         },
     },

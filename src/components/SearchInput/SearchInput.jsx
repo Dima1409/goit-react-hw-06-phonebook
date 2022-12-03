@@ -7,7 +7,7 @@ import {
   InputSearch,
   SearchContainer,
 } from './SearchInput.styled';
-import { getByFilter } from 'redux/selectors';
+import { getByFilter} from 'redux/selectors';
 
 const SearchInput = () => {
   const filter = useSelector(getByFilter);
@@ -16,6 +16,7 @@ const SearchInput = () => {
   const onChangeFilter = e => {
     dispatch(setFilter(e.target.value));
   };
+
   return (
     <>
       <SearchContainer>

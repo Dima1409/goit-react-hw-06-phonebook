@@ -7,13 +7,23 @@ body {
     color: ${({ theme }) => theme.colors.font};
 }
 `
-
+const Container = styled.div`
+width: 300px;
+margin: 0 auto;
+padding: 20px 10px;
+position: relative;
+@media screen and (min-width: 768px) {
+width: 768px;
+}
+@media screen and (min-width: 1280px) {
+width: 1280px;
+}
+`
 const ContainerList = styled.div`
 text-align: center;
-max-width: 630px;
 margin: 0 auto;
-padding: 10px 40px;
 background-color: ${({theme}) => theme.colors.body};
+padding: 0 10px;
 `;
 const FormTitle = styled.h1`
 font-size: 28px;
@@ -29,4 +39,4 @@ font-size: 18px;
 color: red;
 `
 
-export {ContainerList, ListTitle, FormTitle, ListIsEmpty, Global};
+export {Container, ContainerList, ListTitle, FormTitle, ListIsEmpty, Global};

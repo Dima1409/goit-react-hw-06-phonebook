@@ -9,7 +9,8 @@ const ListItem = styled.li`
 padding: 2px 5px;
 display: flex;
 justify-content: space-between;
-max-width: 350px;
+align-items: center;
+max-width: 320px;
 margin-bottom: 5px;
 &:last-child {
     margin-bottom: 0;
@@ -19,11 +20,11 @@ const DeleteButton = styled.button`
 display: flex;
 justify-content: center;
 align-items: center;
-width: 60px;
-height: 20px;
-padding: 10px;
-background-color: teal;
+width: 30px;
+height: 30px;
+background-color: ${({theme}) => theme.colors.main};
 border: none;
+color: ${({theme}) => theme.colors.font};;
 cursor: pointer;
 transition: all 250ms;
 
@@ -33,5 +34,9 @@ transition: all 250ms;
     box-shadow: 0 0 6px  ${({theme}) => theme.colors.font};
 }
 `
+const ItemInfo = styled.p`
+display: flex;
+justify-content: space-between;
+`
 
-export { List, ListItem, DeleteButton};
+export { List, ListItem, DeleteButton, ItemInfo};

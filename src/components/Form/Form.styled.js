@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 const Form = styled.form`
-background-color: teal;
+background-color: ${({theme}) => theme.colors.main};
 display: flex;
 flex-direction: column;
-max-width: 630px;
+padding: 0 10px;
 margin: 0 auto;
-padding: 10px 40px;
 `;
 const LabelForm = styled.label`
 font-size: 22px;
@@ -15,21 +14,32 @@ margin-bottom: 5px;
 `;
 
 const LabelInput = styled.input`
-max-width: 40%;
+max-width: 80%;
 padding: 10px;
 color: teal;
+@media screen and (min-width: 768px) {
+max-width: 60%;
+}
+@media screen and (min-width: 1280px) {
+max-width: 50%;
+}
+
 `;
 
 const ButtonSubmit = styled.button`
 margin: 10px 0;
-background-color: tomato;
+color: #13132e;
+background-color: #ccca41;
 max-width: 150px;
 font-size: 24px;
 border: none;
-transition: all 250ms;
-&:hover {
+transition: all 0.3s;
+&:hover:not(:disabled) {
     cursor: pointer;
-    box-shadow: 0 0 10px;
+    box-shadow: 0 0 6px ${({theme}) => theme.colors.font};
+}
+&:disabled {
+    background-color: grey;
 }
 `;
 
