@@ -36,7 +36,7 @@ font-size: 28px;
 `;
 const ListIsEmpty = styled.p`
 font-size: 18px;
-color: red;
+color: ${({theme})=>theme.colors.font};
 `
 
 export {Container, ContainerList, ListTitle, FormTitle, ListIsEmpty, Global};

@@ -15,7 +15,10 @@ margin-bottom: 5px;
 &:last-child {
     margin-bottom: 0;
 }
-`;
+@media screen and (min-width: 768px) {
+max-width: 600px;
+}
+`
 const DeleteButton = styled.button`
 display: flex;
 justify-content: center;

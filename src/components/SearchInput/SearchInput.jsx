@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
-import PropTypes from 'prop-types';
 import {
   LabelSearch,
   InputSearch,
@@ -34,8 +33,3 @@ const SearchInput = () => {
 };
 
 export default SearchInput;
-
-SearchInput.propTypes = {
-  filterValue: PropTypes.string,
-  onChangeByFilterValue: PropTypes.func,
-};

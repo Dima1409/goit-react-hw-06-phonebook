@@ -1,6 +1,5 @@
 import React from 'react';
 import { List, ListItem, DeleteButton, ItemInfo } from './ListContact.styled';
-import PropTypes from 'prop-types';
 import { getContacts, getByFilter } from 'redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
@@ -23,12 +22,12 @@ const ListContact = () => {
       elem.name.toLowerCase().includes(normalizedValue)
     )
   };
-  const sortedContacts = getSortContacts();
+  const sortedContacts = getSortContacts().sort((a,b)=>a.name.localeCompare(b.name));
 
   return (
     <List>
       {sortedContacts.length === 0 ? (
-        <div>No contacts</div>
+        null
       ) : (
         sortedContacts.map(({ id, name, number }) => {
           return (
@@ -37,7 +36,7 @@ const ListContact = () => {
                 <span>{name}:</span>
                 <span>{number}</span>
               </ItemInfo>
-              <DeleteButton onClick={onDeleteItem}>   
+              <DeleteButton onClick={()=>onDeleteItem(id)}>   
               <IconContext.Provider value={{ size: '25px' }}>
               <AiTwotoneDelete />
             </IconContext.Provider>
@@ -51,13 +50,3 @@ const ListContact = () => {
 };
 
 export default ListContact;
-
-ListContact.propTypes = {
-  contacts: PropTypes.PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-};
